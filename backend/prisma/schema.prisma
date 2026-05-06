@@ -1,0 +1,117 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id        Int      @id @default(autoincrement())
+  email     String   @unique
+  password  String
+  name      String?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  tasks     Task[]
+}
+
+model Task {
+  id          Int      @id @default(autoincrement())
+  title       String
+  description String?
+  status      String   @default("pending") // pending, in_progress, completed
+  priority    String   @default("medium") // low, medium, high
+  dueDate     DateTime?
+  userId      Int
+  user        User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+// Space models for workspace organization
+model Space {
+  id                  String        @id @default(uuid())
+  name                String
+  description         String?
+  icon                String?
+  color               String?
+  visibility          String        @default("private") // private, shared, public
+  customInstructions  String?       @db.Text
+  defaultModel        String?
+  defaultProvider     String?
+  searchSpaceFirst    Boolean       @default(true)
+  includeFilesInContext Boolean     @default(true)
+  createdBy           String
+  createdAt           DateTime      @default(now())
+  updatedAt           DateTime      @updatedAt
+
+  // Relationships
+  files               SpaceFile[]
+  tasks               SpaceTask[]
+  members             SpaceMember[]
+  conversations       Conversation[]
+}
+
+model SpaceFile {
+  id          String   @id @default(uuid())
+  name        String
+  type        String
+  content     String   @db.Text
+  size        Int
+  metadata    Json?
+  uploadedAt  DateTime @default(now())
+  spaceId     String
+  space       Space    @relation(fields: [spaceId], references: [id], onDelete: Cascade)
+}
+
+model SpaceTask {
+  id          String   @id @default(uuid())
+  spaceId     String
+  space       Space    @relation(fields: [spaceId], references: [id], onDelete: Cascade)
+  name        String
+  description String?
+  prompt      String   @db.Text
+  schedule    String   // once, hourly, daily, weekly, monthly
+  nextRunAt   DateTime
+  lastRunAt   DateTime?
+  isActive    Boolean  @default(true)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+model SpaceMember {
+  id        String   @id @default(uuid())
+  spaceId   String
+  space     Space    @relation(fields: [spaceId], references: [id], onDelete: Cascade)
+  userId    String
+  role      String   // owner, admin, editor, viewer
+  joinedAt  DateTime @default(now())
+
+  @@unique([spaceId, userId])
+}
+
+// Update Conversation to link to Space
+model Conversation {
+  id          String   @id @default(uuid())
+  name        String
+  spaceId     String?
+  space       Space?   @relation(fields: [spaceId], references: [id], onDelete: SetNull)
+  messages    Message[]
+  settings    Json?
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+model Message {
+  id              String       @id @default(uuid())
+  conversationId  String
+  conversation    Conversation @relation(fields: [conversationId], references: [id], onDelete: Cascade)
+  role            String       // user, assistant, system
+  content         String       @db.Text
+  timestamp       DateTime     @default(now())
+  attachments     Json?        // Attachment[]
+  citations       Json?        // Citation[]
+  sources         Json?        // Source[]
+}

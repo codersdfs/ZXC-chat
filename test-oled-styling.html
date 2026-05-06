@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OLED Midnight Aesthetic Test</title>
+    <style>
+        :root {
+            --color-bg: #000000;
+            --color-surface: #121212;
+            --color-glass: rgba(18, 18, 18, 0.95);
+            --color-glass-border: #0077ff;
+            --color-text: #f0f6fc;
+            --color-text-secondary: #c9d1d9;
+            --color-primary: #0077ff;
+            --color-border: rgba(0, 119, 255, 0.15);
+            --glass-blur: 12px;
+            --glass-shadow: 0 8px 32px rgba(1, 4, 9, 0.4);
+        }
+
+        body {
+            margin: 0;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
+            background: var(--color-bg);
+            color: var(--color-text);
+            padding: 2rem;
+        }
+
+        .glass {
+            background: var(--color-glass);
+            border: 1px solid rgba(0, 119, 255, 0.2);
+            box-shadow: 0 0 15px rgba(0, 119, 255, 0.1);
+            backdrop-filter: blur(12px);
+            border-radius: 12px;
+            padding: 1rem;
+        }
+
+        .message-bubble {
+            border: 1px solid rgba(0, 119, 255, 0.2);
+            box-shadow: 0 0 15px rgba(0, 119, 255, 0.1);
+            border-radius: 18px;
+            padding: 0.75rem 1rem;
+            margin: 0.5rem 0;
+            max-width: 70%;
+        }
+
+        .message-bubble-user {
+            background: var(--color-primary);
+            margin-left: auto;
+            color: white;
+        }
+
+        .message-bubble-assistant {
+            background: var(--color-surface);
+            margin-right: auto;
+        }
+
+        .chat-input-container {
+            background: var(--color-glass) !important;
+            border: 1px solid var(--color-border) !important;
+            backdrop-filter: blur(12px);
+            box-shadow: 0 10px 30px rgba(0, 119, 255, 0.1), 0 4px 6px rgba(0, 0, 0, 0.1) !important;
+            border-radius: 20px;
+            padding: 1rem;
+            margin-top: 2rem;
+            animation: subtle-float 6s ease-in-out infinite;
+        }
+
+        @keyframes subtle-float {
+            0%,
+            100% {
+                transform: translateY(0px);
+            }
+            50% {
+                transform: translateY(-2px);
+            }
+        }
+
+        @keyframes pulse-glow {
+            0%,
+            100% {
+                box-shadow: 0 0 0 0 rgba(0, 119, 255, 0.3);
+            }
+            50% {
+                box-shadow: 0 0 20px 4px rgba(0, 119, 255, 0.2);
+            }
+        }
+
+        .feature-btn-active {
+            box-shadow: 0 0 10px rgba(0, 119, 255, 0.3);
+            animation: pulse-glow 2s ease-in-out infinite;
+            border: none;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            background: linear-gradient(135deg, rgba(0, 119, 255, 0.1), rgba(0, 119, 255, 0.05));
+            border: 1px solid rgba(0, 119, 255, 0.6);
+            color: var(--color-text);
+            cursor: pointer;
+        }
+
+        textarea {
+            width: 100%;
+            background: transparent;
+            border: none;
+            color: var(--color-text);
+            resize: none;
+            outline: none;
+            min-height: 44px;
+            padding: 0.5rem;
+            font-size: 15px;
+        }
+
+        .sidebar {
+            width: 250px;
+            background: var(--color-surface);
+            border: 1px solid rgba(0, 119, 255, 0.2);
+            box-shadow: 0 0 15px rgba(0, 119, 255, 0.1);
+            border-radius: 12px;
+            padding: 1rem;
+        }
+
+        h1 {
+            color: var(--color-text);
+            font-size: 1.5rem;
+            margin-top: 0;
+        }
+
+        .section {
+            margin: 2rem 0;
+        }
+    </style>
+</head>
+<body data-theme="dark">
+    <h1>OLED Midnight Aesthetic Test</h1>
+
+    <div class="section">
+        <h2>Chat Bubbles</h2>
+        <div class="message-bubble message-bubble-user">
+            This is a user message with the OLED Midnight aesthetic
+        </div>
+        <div class="message-bubble message-bubble-assistant">
+            This is an assistant message with the OLED Midnight aesthetic
+        </div>
+    </div>
+
+    <div class="section">
+        <h2>Sidebar</h2>
+        <div class="sidebar">
+            <h3>Conversations</h3>
+            <p>Sidebar with glowing border effect</p>
+        </div>
+    </div>
+
+    <div class="section">
+        <h2>Input Field (Floating Effect)</h2>
+        <div class="chat-input-container">
+            <textarea placeholder="Message AI assistant..."></textarea>
+        </div>
+    </div>
+
+    <div class="section">
+        <h2>Buttons with Glow Effect</h2>
+        <button class="feature-btn-active">DeepThink (Active)</button>
+        <button class="feature-btn-active" style="margin-left: 1rem;">Search (Active)</button>
+    </div>
+
+    <div class="section">
+        <h2>Glass Effect Elements</h2>
+        <div class="glass">
+            <p>This element has the glass effect with glowing border</p>
+        </div>
+    </div>
+</body>
+</html>
