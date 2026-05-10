@@ -1,0 +1,234 @@
+/**
+ * TopNavigation component styles
+ */
+
+.nav {
+  height: 56px;
+  background-color: var(--nav-bg, #111827);
+  border-bottom: 1px solid var(--nav-border, #374151);
+  position: relative;
+}
+
+.navContent {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 20px;
+  max-width: 100%;
+}
+
+.navLeft {
+  width: 200px;
+}
+
+.navCenter {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+}
+
+.navRight {
+  width: 200px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 12px;
+}
+
+/* Persona Selector */
+.personaSelector {
+  position: relative;
+}
+
+.personaBtn {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 16px;
+  background-color: var(--persona-btn-bg, #1f2937);
+  border: 1px solid var(--nav-border, #374151);
+  border-radius: 10px;
+  color: var(--text-primary, #f9fafb);
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.personaBtn:hover {
+  background-color: var(--persona-btn-hover, #374151);
+  border-color: #10b981;
+}
+
+.personaIcon {
+  font-size: 18px;
+}
+
+.personaName {
+  max-width: 120px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.chevronIcon {
+  width: 16px;
+  height: 16px;
+  color: var(--text-muted, #9ca3af);
+}
+
+/* Persona Dropdown Menu */
+.personaMenu {
+  position: absolute;
+  top: calc(100% + 8px);
+  left: 50%;
+  transform: translateX(-50%);
+  min-width: 280px;
+  background-color: var(--menu-bg, #1f2937);
+  border: 1px solid var(--nav-border, #374151);
+  border-radius: 12px;
+  padding: 6px;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.4);
+  z-index: 100;
+  animation: menuFadeIn 0.2s ease;
+}
+
+@keyframes menuFadeIn {
+  from {
+    opacity: 0;
+    transform: translateX(-50%) translateY(-8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+  }
+}
+
+.personaMenuItem {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  width: 100%;
+  padding: 10px 12px;
+  background: transparent;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  text-align: left;
+}
+
+.personaMenuItem:hover {
+  background-color: var(--menu-item-hover, #374151);
+}
+
+.personaMenuItemActive {
+  background-color: var(--menu-item-active, rgba(16, 185, 129, 0.15));
+}
+
+.personaMenuItemActive .personaMenuName {
+  color: #10b981;
+  font-weight: 500;
+}
+
+.personaMenuIcon {
+  font-size: 22px;
+  flex-shrink: 0;
+}
+
+.personaMenuInfo {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.personaMenuName {
+  color: var(--text-primary, #f9fafb);
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.personaMenuDesc {
+  color: var(--text-muted, #9ca3af);
+  font-size: 12px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.checkIcon {
+  width: 18px;
+  height: 18px;
+  color: #10b981;
+  flex-shrink: 0;
+}
+
+/* Theme Toggle */
+.themeToggle {
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--theme-btn-bg, #1f2937);
+  border: 1px solid var(--nav-border, #374151);
+  border-radius: 8px;
+  color: var(--text-primary, #f9fafb);
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.themeToggle:hover {
+  background-color: var(--theme-btn-hover, #374151);
+  border-color: #10b981;
+}
+
+.themeIcon {
+  width: 18px;
+  height: 18px;
+}
+
+/* User Profile */
+.userProfile {
+  display: flex;
+  align-items: center;
+}
+
+.userAvatar {
+  width: 36px;
+  height: 36px;
+  background: linear-gradient(135deg, #10b981, #059669);
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-weight: 600;
+  font-size: 14px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+/* Menu Overlay */
+.menuOverlay {
+  position: fixed;
+  inset: 0;
+  z-index: 50;
+}
+
+/* Light mode overrides */
+:global(.light-mode) .nav {
+  --nav-bg: #ffffff;
+  --nav-border: #e5e7eb;
+  --text-primary: #111827;
+  --text-muted: #6b7280;
+  --persona-btn-bg: #f9fafb;
+  --persona-btn-hover: #f3f4f6;
+  --menu-bg: #ffffff;
+  --menu-item-hover: #f3f4f6;
+  --menu-item-active: rgba(16, 185, 129, 0.1);
+  --theme-btn-bg: #f9fafb;
+  --theme-btn-hover: #f3f4f6;
+}

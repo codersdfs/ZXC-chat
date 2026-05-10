@@ -1,6 +1,8 @@
 import axios from 'axios';
 
-const API_BASE_URL = import.meta.env.VITE_API_URL || 'http://localhost:3001/api';
+declare const __API_URL__: string;
+
+const API_BASE_URL = (typeof __API_URL__ !== 'undefined' && __API_URL__) || 'http://localhost:3001/api';
 
 axios.defaults.baseURL = API_BASE_URL;
 

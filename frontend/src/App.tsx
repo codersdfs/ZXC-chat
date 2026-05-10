@@ -3,6 +3,8 @@ import Login from './pages/Login';
 import Register from './pages/Register';
 import Dashboard from './pages/Dashboard';
 import Profile from './pages/Profile';
+import SpacesPage from './pages/SpacesPage';
+import SpacesDashboard from './pages/SpacesDashboard';
 import { useAuth } from './hooks/useAuth';
 
 function App() {
@@ -17,6 +19,8 @@ function App() {
         <Route path="/register" element={!user ? <Register /> : <Navigate to="/dashboard" />} />
         <Route path="/dashboard" element={user ? <Dashboard /> : <Navigate to="/login" />} />
         <Route path="/profile" element={user ? <Profile /> : <Navigate to="/login" />} />
+        <Route path="/spaces" element={user ? <SpacesPage /> : <Navigate to="/login" />} />
+        <Route path="/spaces-dashboard" element={user ? <SpacesDashboard /> : <Navigate to="/login" />} />
         <Route path="/" element={<Navigate to="/dashboard" />} />
       </Routes>
     </Router>

@@ -19,7 +19,7 @@ export default function Profile() {
     setLoading(true);
     setError('');
     try {
-      const res = await api.put('/auth/profile', { name });
+      await api.put('/auth/profile', { name });
       // Update user in context if needed
       alert('Profile updated');
     } catch (err: any) {

@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import { Button } from '../components/Button';
 import { TaskCard } from '../components/TaskCard';
 import { TaskForm } from '../components/TaskForm';
@@ -79,7 +80,8 @@ export default function Dashboard() {
     <div className="p-8">
       <div className="flex justify-between items-center mb-8">
         <h1 className="text-3xl font-bold">Dashboard</h1>
-        <div>
+        <div className="flex items-center space-x-4">
+          <Link to="/spaces" className="text-blue-600 hover:underline font-medium">Spaces</Link>
           <span>Welcome, {user?.name || user?.email}</span>
           <Button onClick={() => setShowForm(true)} className="ml-4">Add Task</Button>
           <Button onClick={logout} variant="secondary" className="ml-2">Logout</Button>

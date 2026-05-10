@@ -1,0 +1,178 @@
+/**
+ * MessageInput component styles
+ */
+
+.container {
+  background-color: var(--input-container-bg, #1e293b);
+  border-top: 1px solid var(--border-color, #334155);
+  padding: 0;
+  transition: all 0.2s ease;
+}
+
+.container.focused {
+  box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Toolbar */
+.toolbar {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  padding: 8px 16px;
+  border-bottom: 1px solid var(--border-color, #334155);
+  flex-wrap: wrap;
+}
+
+.toolbarBtn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 28px;
+  height: 28px;
+  padding: 4px 8px;
+  background-color: transparent;
+  border: 1px solid transparent;
+  border-radius: 6px;
+  color: var(--text-muted, #9ca3af);
+  font-size: 12px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.toolbarBtn:hover {
+  background-color: var(--toolbar-btn-hover, #334155);
+  color: var(--text-primary, #f9fafb);
+  border-color: var(--border-color, #334155);
+}
+
+.toolbarBtn strong,
+.toolbarBtn em {
+  font-style: normal;
+  font-weight: 600;
+}
+
+.codeIcon {
+  font-family: 'Fira Code', 'Cascadia Code', 'Consolas', monospace;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.toolbarDivider {
+  width: 1px;
+  height: 20px;
+  background-color: var(--border-color, #334155);
+  margin: 0 8px;
+}
+
+.toolbarHint {
+  font-size: 11px;
+  color: var(--text-muted, #9ca3af);
+  margin-left: auto;
+}
+
+.toolbarHint kbd {
+  display: inline-block;
+  padding: 2px 5px;
+  font-size: 10px;
+  font-family: inherit;
+  color: var(--text-muted, #9ca3af);
+  background-color: var(--kbd-bg, #0f172a);
+  border: 1px solid var(--border-color, #334155);
+  border-radius: 4px;
+  margin: 0 2px;
+}
+
+/* Input Wrapper */
+.inputWrapper {
+  display: flex;
+  align-items: flex-end;
+  gap: 12px;
+  padding: 12px 16px;
+}
+
+.textarea {
+  flex: 1;
+  min-height: 44px;
+  max-height: 200px;
+  padding: 10px 16px;
+  background-color: var(--textarea-bg, #0f172a);
+  border: 1px solid var(--border-color, #334155);
+  border-radius: 12px;
+  color: var(--text-primary, #f9fafb);
+  font-size: 14px;
+  font-family: inherit;
+  line-height: 1.5;
+  resize: none;
+  outline: none;
+  transition: all 0.2s ease;
+}
+
+.textarea:focus {
+  border-color: #10b981;
+  box-shadow: 0 0 0 2px rgba(16, 185, 129, 0.1);
+}
+
+.textarea::placeholder {
+  color: var(--text-muted, #9ca3af);
+}
+
+.textarea:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* Send Button */
+.sendBtn {
+  flex-shrink: 0;
+  width: 44px;
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--send-btn-bg, #334155);
+  border: none;
+  border-radius: 12px;
+  color: var(--text-muted, #9ca3af);
+  cursor: not-allowed;
+  transition: all 0.2s ease;
+}
+
+.sendBtn svg {
+  width: 20px;
+  height: 20px;
+}
+
+.sendBtnActive {
+  background-color: #10b981;
+  color: white;
+  cursor: pointer;
+}
+
+.sendBtnActive:hover {
+  background-color: #059669;
+  transform: scale(1.05);
+}
+
+.sendBtnActive:active {
+  transform: scale(0.95);
+}
+
+/* Light mode overrides */
+:global(.light-mode) .container {
+  --input-container-bg: #ffffff;
+  --border-color: #e2e8f0;
+  --text-primary: #1e293b;
+  --text-muted: #64748b;
+  --toolbar-btn-hover: #f1f5f9;
+  --textarea-bg: #f8fafc;
+  --send-btn-bg: #e2e8f0;
+  --kbd-bg: #f1f5f9;
+}
+
+:global(.light-mode) .sendBtnActive {
+  background-color: #10b981;
+}
+
+:global(.light-mode) .sendBtnActive:hover {
+  background-color: #059669;
+}

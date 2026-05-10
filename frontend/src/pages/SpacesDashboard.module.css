@@ -1,0 +1,44 @@
+/**
+ * SpacesDashboard page styles
+ */
+
+.dashboard {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  background-color: var(--dashboard-bg, #0f172a);
+}
+
+/* Main Content */
+.mainContent {
+  flex: 1;
+  display: flex;
+  overflow: hidden;
+}
+
+/* Chat Area */
+.chatArea {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  background-color: var(--chat-area-bg, #0f172a);
+}
+
+/* Input Container */
+.inputContainer {
+  flex-shrink: 0;
+}
+
+/* Dark Mode (default) */
+.darkMode {
+  --dashboard-bg: #0f172a;
+  --chat-area-bg: #0f172a;
+}
+
+/* Light Mode */
+.lightMode {
+  --dashboard-bg: #f8fafc;
+  --chat-area-bg: #f8fafc;
+}

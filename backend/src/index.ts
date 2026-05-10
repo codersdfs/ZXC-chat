@@ -4,6 +4,7 @@ import dotenv from 'dotenv';
 import { PrismaClient } from '@prisma/client';
 import authRoutes from './routes/authRoutes';
 import taskRoutes from './routes/taskRoutes';
+import spaceRoutes from './routes/spaceRoutes';
 import { errorHandler } from './middleware/errorHandler';
 
 dotenv.config();
@@ -17,6 +18,7 @@ app.use(express.json());
 
 app.use('/api/auth', authRoutes);
 app.use('/api/tasks', taskRoutes);
+app.use('/api/spaces', spaceRoutes);
 
 app.use(errorHandler);
 
