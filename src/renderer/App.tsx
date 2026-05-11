@@ -2,6 +2,7 @@ import { useTheme } from "./components/ThemeProvider";
 import ChatContainer from "./components/ChatContainer";
 import Sidebar from "./components/Sidebar";
 import SpaceView from "./components/space/SpaceView";
+import SpacesList from "./components/SpacesList";
 import { useState, useEffect } from "react";
 import { Sun, Moon, Laptop2 } from "lucide-react";
 import { useChatStore } from "./store/useChatStore";
@@ -108,6 +109,7 @@ function App() {
     useChatStore();
   const { themeMode, setThemeMode } = useTheme();
   const { currentSpace } = useSpaceStore();
+  const { spacesViewOpen } = useSpaceStore();
   const [draftSettings, setDraftSettings] = useState<ChatSettings>(
     getDefaultSettings(settings),
   );
@@ -155,7 +157,9 @@ function App() {
           onClose={() => setSidebarOpen(false)}
           onOpenSettings={() => setSettingsOpen(true)}
         />
-        {showSpaceView && currentSpace ? (
+        {spacesViewOpen ? (
+          <SpacesList />
+        ) : showSpaceView && currentSpace ? (
           <SpaceView
             space={currentSpace}
             onOpenSettings={() => setSettingsOpen(true)}

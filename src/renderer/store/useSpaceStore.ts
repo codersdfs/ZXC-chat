@@ -22,9 +22,11 @@ interface SpaceState {
   spaceSettingsOpen: boolean;
   filesPanelOpen: boolean;
   tasksPanelOpen: boolean;
+  spacesViewOpen: boolean;
 
   // Actions
   setCurrentSpace: (spaceId: string | null) => void;
+  setSpacesViewOpen: (open: boolean) => void;
 
   // Space CRUD
   createSpace: (
@@ -103,6 +105,7 @@ export const useSpaceStore = create<SpaceState>()(
       spaceSettingsOpen: false,
       filesPanelOpen: false,
       tasksPanelOpen: false,
+      spacesViewOpen: false,
 
       // Actions
       setCurrentSpace: (spaceId) => {
@@ -407,6 +410,10 @@ export const useSpaceStore = create<SpaceState>()(
 
       setTasksPanelOpen: (open) => {
         set({ tasksPanelOpen: open });
+      },
+
+      setSpacesViewOpen: (open) => {
+        set({ spacesViewOpen: open });
       },
 
       // Search within space

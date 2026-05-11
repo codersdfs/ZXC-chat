@@ -1,4 +1,4 @@
-import { MessageSquare, Settings, Sun, Moon, Plus, Trash2, Search, X, Sparkles, ChevronDown, ChevronRight, FolderOpen, Folder } from "lucide-react";
+import { MessageSquare, Settings, Sun, Moon, Plus, Trash2, Search, X, Sparkles, ChevronDown, ChevronRight, FolderOpen, Folder, LayoutGrid } from "lucide-react";
 import { useMemo, useState } from "react";
 import { useTheme } from "./ThemeProvider";
 import { useChatStore } from "../store/useChatStore";
@@ -46,7 +46,7 @@ const Sidebar = ({ isOpen, onClose, onOpenSettings }: SidebarProps) => {
     deleteConversation,
   } = useChatStore();
 
-  const { spaces, currentSpaceId, setCurrentSpace } = useSpaceStore();
+  const { spaces, currentSpaceId, setCurrentSpace, setSpacesViewOpen } = useSpaceStore();
 
   // Group conversations by spaces
   const spacesWithConversations = useMemo((): SpaceWithConversations[] => {
@@ -270,6 +270,15 @@ const Sidebar = ({ isOpen, onClose, onOpenSettings }: SidebarProps) => {
               onOpenTasksPanel={() => setTasksPanelOpen(true)}
             />
           </div>
+
+          {/* Spaces List Button */}
+          <button
+            onClick={() => setSpacesViewOpen(true)}
+            className="w-full h-11 mb-3 rounded-xl border border-border bg-surface hover:bg-surface-elevated text-text transition-all duration-200 flex items-center justify-center gap-2 font-medium shrink-0"
+          >
+            <LayoutGrid size={18} />
+            <span>All Spaces</span>
+          </button>
 
           {/* Premium New Chat Button */}
           <button
