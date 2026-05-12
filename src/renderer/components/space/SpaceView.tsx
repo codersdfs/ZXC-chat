@@ -24,6 +24,7 @@ import {
 import { useSpaceStore } from "../../store/useSpaceStore";
 import { useChatStore } from "../../store/useChatStore";
 import type { Space } from "../../../shared/types";
+import SpaceIcon from "../icons/SpaceIcon";
 
 // ============================================================================
 // Types
@@ -179,10 +180,10 @@ const SpaceView = ({
         <div className="px-6 py-5 border-b border-gray-800">
           <div className="flex items-center gap-3 mb-1">
             <div
-              className="w-10 h-10 rounded-xl flex items-center justify-center text-lg"
+              className="w-10 h-10 rounded-xl flex items-center justify-center"
               style={{ backgroundColor: fullSpace.color || "#6366F1" }}
             >
-              {fullSpace.icon || "📁"}
+              <SpaceIcon icon={fullSpace.icon} size={20} />
             </div>
             <div>
               <h1 className="text-xl font-semibold text-gray-100">{fullSpace.name}</h1>

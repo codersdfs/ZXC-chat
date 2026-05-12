@@ -9,6 +9,7 @@ import {
   ArrowLeft,
 } from "lucide-react";
 import type { Space } from "../../shared/types";
+import SpaceIcon from "./icons/SpaceIcon";
 
 const getColor = (id: string) => {
   const colors = [
@@ -76,7 +77,7 @@ const SpaceCard = memo(function SpaceCard({
             className="w-10 h-10 rounded-full flex items-center justify-center text-white font-bold flex-shrink-0 shadow-md"
             style={{ backgroundColor: space.color || getColor(space.id) }}
           >
-            {space.icon || space.name[0].toUpperCase()}
+            <SpaceIcon icon={space.icon} size={18} />
           </div>
           <div className="flex-1 min-w-0">
             <h3 className="text-base font-semibold text-text truncate">

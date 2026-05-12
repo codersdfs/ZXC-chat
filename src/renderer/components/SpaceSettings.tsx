@@ -14,6 +14,7 @@ import {
 } from "lucide-react";
 import { useSpaceStore } from "../store/useSpaceStore";
 import type { SpaceVisibility, ModelProvider } from "../../shared/types";
+import SpaceIcon from "./icons/SpaceIcon";
 
 interface SpaceSettingsProps {
   isOpen: boolean;
@@ -59,7 +60,7 @@ const SpaceSettings = ({ isOpen, onClose }: SpaceSettingsProps) => {
 
   const [name, setName] = useState("");
   const [description, setDescription] = useState("");
-  const [icon, setIcon] = useState("📁");
+  const [icon, setIcon] = useState("");
   const [color, setColor] = useState("#6366F1");
   const [visibility, setVisibility] = useState<SpaceVisibility>("private");
   const [customInstructions, setCustomInstructions] = useState("");
@@ -74,7 +75,7 @@ const SpaceSettings = ({ isOpen, onClose }: SpaceSettingsProps) => {
     if (currentSpace) {
       setName(currentSpace.name);
       setDescription(currentSpace.description || "");
-      setIcon(currentSpace.icon || "📁");
+      setIcon(currentSpace.icon || "");
       setColor(currentSpace.color || "#6366F1");
       setVisibility(currentSpace.visibility);
       setCustomInstructions(currentSpace.customInstructions || "");
@@ -113,10 +114,10 @@ const SpaceSettings = ({ isOpen, onClose }: SpaceSettingsProps) => {
         <div className="flex items-center justify-between px-6 py-4 border-b border-border">
           <div className="flex items-center gap-3">
             <div
-              className="w-10 h-10 rounded-xl flex items-center justify-center text-white text-lg"
+              className="w-10 h-10 rounded-xl flex items-center justify-center text-white"
               style={{ backgroundColor: color }}
             >
-              {icon}
+              <SpaceIcon icon={icon} size={20} />
             </div>
             <div>
               <h2 className="text-lg font-semibold text-text">Space Settings</h2>

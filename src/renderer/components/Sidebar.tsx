@@ -8,6 +8,7 @@ import SpaceFiles from "./SpaceFiles";
 import SpaceSettings from "./SpaceSettings";
 import TasksPanel from "./TasksPanel";
 import type { ChatConversation } from "../../shared/types";
+import SpaceIcon from "./icons/SpaceIcon";
 
 interface SidebarProps {
   isOpen: boolean;
@@ -163,7 +164,7 @@ const Sidebar = ({ isOpen, onClose, onOpenSettings }: SidebarProps) => {
               className="w-7 h-7 rounded-lg flex items-center justify-center shrink-0 text-xs"
               style={{ backgroundColor: item.space.color || "#6366F1" }}
             >
-              {item.space.icon || "📁"}
+              <SpaceIcon icon={item.space.icon} size={14} />
             </div>
             <span className="text-sm font-medium truncate">{item.space.name}</span>
             <span className="text-xs text-text-muted">({item.conversations.length})</span>

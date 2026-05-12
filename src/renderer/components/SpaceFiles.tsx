@@ -15,6 +15,7 @@ import {
 } from "lucide-react";
 import { useSpaceStore } from "../store/useSpaceStore";
 import type { SpaceFile } from "../../shared/types";
+import SpaceIcon from "./icons/SpaceIcon";
 
 interface SpaceFilesProps {
   isOpen: boolean;
@@ -109,7 +110,7 @@ const SpaceFiles = ({ isOpen, onClose }: SpaceFilesProps) => {
               className="w-10 h-10 rounded-xl flex items-center justify-center text-white"
               style={{ backgroundColor: currentSpace.color || "#6366F1" }}
             >
-              {currentSpace.icon || "📁"}
+              <SpaceIcon icon={currentSpace.icon} size={20} />
             </div>
             <div>
               <h2 className="text-lg font-semibold text-text">{currentSpace.name}</h2>

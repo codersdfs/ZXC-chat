@@ -17,6 +17,7 @@ import {
 } from "lucide-react";
 import { useSpaceStore } from "../store/useSpaceStore";
 import type { Space, SpaceVisibility } from "../../shared/types";
+import SpaceIcon from "./icons/SpaceIcon";
 
 interface SpaceSelectorProps {
   onOpenSpaceSettings: () => void;
@@ -130,7 +131,7 @@ const SpaceSelector = ({
           className="w-8 h-8 rounded-lg flex items-center justify-center text-white text-sm font-medium shrink-0"
           style={{ backgroundColor: currentSpace?.color || "#6366F1" }}
         >
-          {currentSpace?.icon || "📁"}
+          <SpaceIcon icon={currentSpace?.icon} size={16} />
         </div>
         <div className="flex-1 min-w-0 text-left">
           <div className="flex items-center gap-1.5">
@@ -245,7 +246,7 @@ const SpaceSelector = ({
                       className="w-7 h-7 rounded-md flex items-center justify-center shrink-0 text-white text-xs"
                       style={{ backgroundColor: space.color || "#6366F1" }}
                     >
-                      {space.icon || "📁"}
+                      <SpaceIcon icon={space.icon} size={14} />
                     </div>
                     <div className="flex-1 min-w-0">
                       <div className="flex items-center gap-1.5">
