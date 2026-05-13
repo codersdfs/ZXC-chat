@@ -51,7 +51,9 @@ export class AIService {
     }
 
     // Get OpenRouter free models if API key is available
+    console.log("[getAllModels] settings.searchApiKeys:", settings.searchApiKeys);
     if (settings.searchApiKeys?.openRouter) {
+      console.log("[getAllModels] OpenRouter API key found, calling live API");
       try {
         const openrouterModels = await this.getOpenRouterModels(
           settings.searchApiKeys.openRouter,
@@ -171,9 +173,13 @@ export class AIService {
       description?: string;
     }>;
 
-    return models.filter(
+    console.log(`[OpenRouter] API returned ${models.length} models`);
+    const filtered = models.filter(
       (m) => !m.pricing || m.pricing.prompt === "0" || m.pricing.completion === "0",
     );
+    console.log(`[OpenRouter] ${filtered.length} models passed free-tier filter`);
+
+    return filtered;
   }
 
   /**

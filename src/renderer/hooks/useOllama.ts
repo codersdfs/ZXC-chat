@@ -58,8 +58,9 @@ export const useOllama = () => {
 
   // Reload models when provider changes
   useEffect(() => {
+    console.log("[useEffect] Reloading models due to settings change. modelProvider:", settings.modelProvider, "openRouter key:", settings.searchApiKeys?.openRouter ? "set" : "not set");
     loadModels();
-  }, [settings.modelProvider]);
+  }, [settings.modelProvider, settings.searchApiKeys?.openRouter]);
 
   const loadModels = async () => {
     try {
@@ -67,7 +68,9 @@ export const useOllama = () => {
 
       if (window.electronAPI) {
         // Use Electron IPC with current settings to get all models
+        console.log("[loadModels] Calling getModels with settings.searchApiKeys:", settings.searchApiKeys);
         const models = await window.electronAPI.getModels(settings);
+        console.log("[loadModels] Received models count:", models.length, "models:", models.map(m => m.id));
         setAvailableModels(models);
       } else {
         // Fallback: fetch from Ollama only (browser mode)

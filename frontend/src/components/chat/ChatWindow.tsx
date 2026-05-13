@@ -15,6 +15,7 @@ interface ChatWindowProps {
   onActivateTab: (tabId: string) => void;
   onCloseTab: (tabId: string) => void;
   isDarkMode: boolean;
+  isTyping?: boolean;
 }
 
 export const ChatWindow: React.FC<ChatWindowProps> = ({
@@ -24,7 +25,8 @@ export const ChatWindow: React.FC<ChatWindowProps> = ({
   messages,
   onActivateTab,
   onCloseTab,
-  isDarkMode
+  isDarkMode,
+  isTyping = false
 }) => {
   const messagesEndRef = useRef<HTMLDivElement>(null);
 
@@ -153,6 +155,13 @@ export const ChatWindow: React.FC<ChatWindowProps> = ({
                 </div>
               </div>
             ))}
+            {isTyping && (
+              <div className={styles.typingIndicator}>
+                <span className={styles.typingDot} />
+                <span className={styles.typingDot} />
+                <span className={styles.typingDot} />
+              </div>
+            )}
             <div ref={messagesEndRef} />
           </div>
         )}
