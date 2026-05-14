@@ -127,8 +127,8 @@ export async function fetchOpenRouterModels(
   const freeModels = models.filter((model) => {
     const isFree =
       !model.pricing ||
-      model.pricing.prompt === "0" ||
-      model.pricing.completion === "0";
+      model.pricing.prompt === "0" || Number(model.pricing.prompt) === 0 ||
+      model.pricing.completion === "0" || Number(model.pricing.completion) === 0;
     return isFree;
   });
 

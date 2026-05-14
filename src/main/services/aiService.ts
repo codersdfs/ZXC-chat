@@ -69,6 +69,15 @@ export class AIService {
         );
       } catch (error) {
         console.warn("Could not fetch OpenRouter models:", error);
+        models.push(
+          ...FREE_OPENROUTER_MODELS.map((m) => ({
+            id: m.id,
+            name: m.name,
+            provider: "openrouter" as const,
+            context_length: m.context_length,
+            description: m.description,
+          })),
+        );
       }
     } else {
       // Add free models without API call (static list)
@@ -174,9 +183,13 @@ export class AIService {
     }>;
 
     console.log(`[OpenRouter] API returned ${models.length} models`);
-    const filtered = models.filter(
-      (m) => !m.pricing || m.pricing.prompt === "0" || m.pricing.completion === "0",
-    );
+    const filtered = models.filter((m) => {
+      const isFree =
+        !m.pricing ||
+        m.pricing.prompt === "0" || Number(m.pricing.prompt) === 0 ||
+        m.pricing.completion === "0" || Number(m.pricing.completion) === 0;
+      return isFree;
+    });
     console.log(`[OpenRouter] ${filtered.length} models passed free-tier filter`);
 
     return filtered;
